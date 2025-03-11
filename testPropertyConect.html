@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Connect Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input, button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+        }
+        .success-message {
+            color: green;
+            font-weight: bold;
+        }
+        .property-list {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- User Login Section -->
+        <h2>User Login</h2>
+        <form id="login-form">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="login-message" class="success-message"></p>
+
+        <!-- Search Property Section -->
+        <h2>Search Property by Location</h2>
+        <form id="search-form">
+            <input type="text" id="location" placeholder="Enter location" required>
+            <button type="submit">Search</button>
+        </form>
+        <div id="search-results" class="property-list"></div>
+
+        <!-- Add Property Section -->
+        <h2>Add Property</h2>
+        <form id="add-property-form">
+            <input type="text" id="title" placeholder="Property Title" required>
+            <input type="number" id="price" placeholder="Price" required>
+            <input type="text" id="property-location" placeholder="Location" required>
+            <button type="submit">Add Property</button>
+        </form>
+        <p id="add-property-message" class="success-message"></p>
+    </div>
+
+    <script>
+        // User Login Functionality
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Simulate login success
+            document.getElementById('login-message').textContent = 'Login successful! Redirecting...';
+            setTimeout(() => {
+                window.location.href = '#dashboard'; // Simulate redirect
+            }, 2000);
+        });
+
+        // Search Property Functionality
+        document.getElementById('search-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const location = document.getElementById('location').value;
+
+            // Simulate search results
+            const results = [
+                { title: 'Beautiful Apartment in ' + location, price: '$1500' },
+                { title: 'Cozy Studio in ' + location, price: '$1200' }
+            ];
+
+            const resultsDiv = document.getElementById('search-results');
+            resultsDiv.innerHTML = results.map(property => `
+                <div>
+                    <h3>${property.title}</h3>
+                    <p>${property.price}</p>
+                </div>
+            `).join('');
+        });
+
+        // Add Property Functionality
+        document.getElementById('add-property-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const title = document.getElementById('title').value;
+            const price = document.getElementById('price').value;
+            const location = document.getElementById('property-location').value;
+
+            // Simulate property addition
+            document.getElementById('add-property-message').textContent = 'Property added successfully!';
+        });
+    </script>
+</body>
+</html>
